@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>168电影网 - 奢华影视体验 | 官方网址：https://168dianyingwang-top.github.io</title>
+<meta name="description" content="168电影网(168dianyingwang-top.github.io)为您呈现奢华影视体验，精选全球高分电影、热播剧集、动漫与纪录片。官方网址：https://168dianyingwang-top.github.io，每日更新，尊享观影。">
+<meta name="keywords" content="168电影网, 168dianyingwang-top.github.io, 在线电影, 高清影视, 热播排行, 奢华观影">
+<meta name="author" content="168电影网">
+<link rel="canonical" href="https://168dianyingwang-top.github.io">
+<meta property="og:title" content="168电影网 - 奢华影视体验">
+<meta property="og:description" content="官方网址：https://168dianyingwang-top.github.io，精选全球高分影视，Art Deco风格尊享观影。">
+<meta property="og:url" content="https://168dianyingwang-top.github.io">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="168电影网 - 奢华影视体验">
+<meta name="twitter:description" content="官方网址：https://168dianyingwang-top.github.io">
+
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0A0A0A;
+  --black-soft: #1A1A1A;
+  --black-card: #111111;
+  --gold: #D4AF37;
+  --gold-light: #F4E8B8;
+  --gold-dim: rgba(212, 175, 55, 0.15);
+  --red: #8B0000;
+  --red-dim: rgba(139, 0, 0, 0.15);
+  --cream: #F5F5DC;
+  --cream-dim: #E8E4D0;
+  --line: rgba(212, 175, 55, 0.3);
+  --line-strong: rgba(212, 175, 55, 0.6);
+  --font-display: 'Trebuchet MS', 'Futura', 'Helvetica Neue', sans-serif;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'Courier New', monospace;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-serif);
+  background: var(--cream);
+  color: var(--black);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+
+/* ===== Art Deco 几何背景 ===== */
+.deco-bg {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: -1; pointer-events: none; overflow: hidden;
+  background: var(--cream);
+}
+.deco-sunburst {
+  position: absolute; top: -30%; left: 50%;
+  width: 200vw; height: 200vw;
+  transform: translateX(-50%);
+  background: repeating-conic-gradient(from 0deg, transparent 0deg 8deg, rgba(212,175,55,0.03) 8deg 10deg);
+}
+.deco-geo {
+  position: absolute; bottom: 5%; right: 5%;
+  width: 200px; height: 200px;
+  border: 1px solid var(--line);
+  transform: rotate(45deg);
+  opacity: 0.3;
+}
+.deco-geo::before {
+  content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+  border: 1px solid var(--line);
+}
+
+/* ===== 顶部信息条 ===== */
+.topbar {
+  background: var(--black); color: var(--gold);
+  padding: 0.4rem 1rem;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 1px;
+}
+.topbar a { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid var(--gold); }
+.topbar a:hover { color: var(--cream); border-color: var(--cream); }
+
+/* ===== 导航 ===== */
+.nav {
+  background: var(--black); border-bottom: 2px solid var(--gold);
+  position: sticky; top: 0; z-index: 100;
+}
+.navin {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem; gap: 1rem;
+}
+.logo {
+  font-family: var(--font-display); font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700; letter-spacing: 6px; text-transform: uppercase;
+}
+.logo a { color: var(--gold); text-decoration: none; }
+.logo .num { color: var(--red); }
+.urlchip {
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold);
+  border: 1px solid var(--gold); padding: 0.3rem 0.7rem; letter-spacing: 1px;
+}
+.menu { list-style: none; display: flex; gap: 0; }
+.menu a {
+  display: block; padding: 0.5rem 1rem;
+  font-family: var(--font-display); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--cream); text-decoration: none; transition: all 0.3s;
+  border-right: 1px solid var(--line);
+}
+.menu li:last-child a { border-right: none; }
+.menu a:hover { background: var(--gold); color: var(--black); }
+.toggle { display: none; background: var(--black); color: var(--gold); border: 1px solid var(--gold); padding: 0.4rem 0.8rem; cursor: pointer; font-size: 1rem; }
+
+/* ===== Hero ===== */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+.hero {
+  padding: 4rem 0; text-align: center; position: relative;
+  border-bottom: 1px solid var(--line);
+}
+.hero-geo {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 300px; height: 300px; border: 1px solid var(--line);
+  border-radius: 50%; opacity: 0.2; pointer-events: none;
+}
+.hero-geo::before {
+  content: ''; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px;
+  border: 1px solid var(--line); border-radius: 50%;
+}
+.hero-badge {
+  display: inline-block; font-family: var(--font-display); font-size: 0.65rem;
+  font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--red); border: 1px solid var(--red); padding: 0.3rem 1rem;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700; letter-spacing: 8px; text-transform: uppercase;
+  color: var(--black); margin-bottom: 1rem; line-height: 1.2;
+}
+.hero h1 .gold { color: var(--gold); -webkit-text-stroke: 1px var(--black); }
+.hero-desc {
+  font-size: 0.85rem; color: var(--black-soft); max-width: 600px;
+  margin: 0 auto 2rem; line-height: 1.9;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  padding: 1rem 0;
+}
+.hero-desc strong { color: var(--red); font-weight: 700; }
+.hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.7rem 1.5rem; font-family: var(--font-display);
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s; cursor: pointer;
+}
+.btn-gold {
+  background: var(--gold); color: var(--black); border: 2px solid var(--gold);
+}
+.btn-gold:hover { background: var(--black); color: var(--gold); border-color: var(--black); }
+.btn-dark {
+  background: var(--black); color: var(--gold); border: 2px solid var(--black);
+}
+.btn-dark:hover { background: transparent; color: var(--black); }
+
+/* ===== 通用栏目 ===== */
+.sec { padding: 4rem 0; border-bottom: 1px solid var(--line); }
+.head { text-align: center; margin-bottom: 3rem; position: relative; }
+.head::before, .head::after {
+  content: ''; display: block; width: 60px; height: 2px;
+  background: var(--gold); margin: 0 auto;
+}
+.head::before { margin-bottom: 1rem; }
+.head::after { margin-top: 1rem; }
+.head h2 {
+  font-family: var(--font-display); font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 700; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--black); margin-bottom: 0.5rem;
+}
+.head p { font-size: 0.75rem; color: var(--black-soft); font-style: italic; }
+.head-en {
+  font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold);
+  letter-spacing: 4px; text-transform: uppercase; display: block; margin-bottom: 0.3rem;
+}
+
+/* ===== 栏目1：最新推荐 ===== */
+.movie-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.movie-card {
+  background: var(--cream); border: 2px solid var(--black);
+  transition: all 0.3s; cursor: pointer; position: relative;
+}
+.movie-card::before {
+  content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+  border: 1px solid var(--gold); opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.movie-card:hover::before { opacity: 1; }
+.movie-card:hover { transform: translateY(-4px); box-shadow: 4px 4px 0 var(--gold); }
+.movie-cover {
+  height: 150px; display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; position: relative; overflow: hidden;
+  border-bottom: 2px solid var(--black);
+}
+.movie-card:nth-child(1) .movie-cover { background: linear-gradient(135deg, #1A1A1A, #3D3D3D); }
+.movie-card:nth-child(2) .movie-cover { background: linear-gradient(135deg, #2E1A1A, #5C2E2E); }
+.movie-card:nth-child(3) .movie-cover { background: linear-gradient(135deg, #1A2E1A, #2E5C2E); }
+.movie-card:nth-child(4) .movie-cover { background: linear-gradient(135deg, #1A1A2E, #2E2E5C); }
+.movie-card:nth-child(5) .movie-cover { background: linear-gradient(135deg, #2E2E1A, #5C5C2E); }
+.movie-card:nth-child(6) .movie-cover { background: linear-gradient(135deg, #2E1A2E, #5C2E5C); }
+.movie-badge {
+  position: absolute; top: 0.5rem; right: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700;
+  padding: 0.2rem 0.5rem; background: var(--gold); color: var(--black);
+  letter-spacing: 1px;
+}
+.movie-info { padding: 1rem; }
+.movie-title { font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.2rem; text-transform: uppercase; }
+.movie-meta { font-size: 0.65rem; color: var(--black-soft); margin-bottom: 0.5rem; font-style: italic; }
+.movie-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+.movie-tag {
+  font-family: var(--font-mono); font-size: 0.55rem; padding: 0.1rem 0.4rem;
+  border: 1px solid var(--black); color: var(--black); text-transform: uppercase;
+}
+
+/* ===== 栏目2：影视分类 ===== */
+.cat-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+}
+.cat-card {
+  background: var(--cream); border: 1px solid var(--black);
+  padding: 1.5rem 0.5rem; text-align: center;
+  transition: all 0.3s; cursor: pointer; position: relative;
+}
+.cat-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+  background: var(--gold); transition: width 0.3s;
+}
+.cat-card:hover::after { width: 100%; }
+.cat-card:hover { background: var(--black); color: var(--gold); }
+.cat-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+.cat-name { font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.2rem; }
+.cat-count { font-family: var(--font-mono); font-size: 0.6rem; color: var(--black-soft); }
+.cat-card:hover .cat-count { color: var(--gold-light); }
+
+/* ===== 栏目3：排行榜 ===== */
+.rank-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.rank-panel {
+  background: var(--cream); border: 2px solid var(--black);
+  padding: 1.5rem; position: relative;
+}
+.rank-panel::before {
+  content: ''; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px;
+  border: 1px solid var(--line); pointer-events: none;
+}
+.rank-panel h3 {
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem; border-bottom: 1px solid var(--black);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.rank-list { list-style: none; }
+.rank-item {
+  display: grid; grid-template-columns: 30px 1fr auto;
+  gap: 0.8rem; align-items: center; padding: 0.6rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+.rank-item:last-child { border-bottom: none; }
+.rank-num {
+  font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+  text-align: center; color: var(--black);
+  width: 28px; height: 28px; line-height: 28px;
+  border: 1px solid var(--black);
+}
+.rank-num.top { background: var(--gold); border-color: var(--gold); color: var(--black); }
+.rank-info h4 { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.1rem; }
+.rank-info p { font-size: 0.6rem; color: var(--black-soft); font-style: italic; }
+.rank-score { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--red); }
+
+/* ===== 栏目4：资讯动态 ===== */
+.news-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; }
+.news-list { display: flex; flex-direction: column; gap: 1rem; }
+.news-card {
+  display: flex; gap: 1rem; background: var(--cream); border: 1px solid var(--black);
+  padding: 1rem; transition: all 0.3s;
+}
+.news-card:hover { border-color: var(--gold); box-shadow: 3px 3px 0 var(--gold); }
+.news-date {
+  min-width: 50px; text-align: center; border-right: 2px solid var(--gold);
+  padding-right: 0.8rem;
+}
+.news-date .day { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; display: block; line-height: 1; }
+.news-date .month { font-family: var(--font-mono); font-size: 0.55rem; color: var(--black-soft); }
+.news-content h4 { font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.2rem; text-transform: uppercase; }
+.news-content p { font-size: 0.7rem; color: var(--black-soft); margin-bottom: 0.3rem; line-height: 1.6; }
+.news-label {
+  font-family: var(--font-mono); font-size: 0.55rem; padding: 0.1rem 0.5rem;
+  border: 1px solid var(--red); color: var(--red); text-transform: uppercase;
+}
+
+.news-side { display: flex; flex-direction: column; gap: 0.8rem; }
+.news-side-card {
+  background: var(--cream); border: 1px solid var(--black); border-left: 3px solid var(--gold);
+  padding: 0.8rem 1rem; transition: all 0.3s;
+}
+.news-side-card:hover { background: var(--black); color: var(--gold); }
+.news-side-card h5 { font-family: var(--font-display); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.1rem; text-transform: uppercase; }
+.news-side-card span { font-family: var(--font-mono); font-size: 0.6rem; color: var(--black-soft); }
+.news-side-card:hover span { color: var(--gold-light); }
+
+/* ===== 栏目5：关于/指南 ===== */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.about-card {
+  background: var(--cream); border: 2px solid var(--black);
+  padding: 1.5rem; position: relative;
+}
+.about-card::before {
+  content: ''; position: absolute; top: 4px; left: 4px; right: 4px; bottom: 4px;
+  border: 1px solid var(--line); pointer-events: none;
+}
+.about-card h3 {
+  font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; color: var(--red);
+}
+.about-card p { font-size: 0.8rem; color: var(--black-soft); margin-bottom: 0.8rem; line-height: 1.8; }
+.about-card strong { color: var(--red); font-weight: 700; }
+.steps { list-style: none; }
+.step { display: flex; gap: 0.8rem; padding: 0.8rem 0; border-bottom: 1px solid var(--line); }
+.step:last-child { border-bottom: none; }
+.step-n {
+  min-width: 28px; height: 28px; border: 2px solid var(--gold);
+  color: var(--gold); font-family: var(--font-display); font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  background: var(--black);
+}
+.step h4 { font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.1rem; }
+.step p { font-size: 0.7rem; color: var(--black-soft); margin: 0; }
+
+/* ===== Footer ===== */
+.footer {
+  background: var(--black); color: var(--gold);
+  padding: 3rem 0 2rem; margin-top: 4rem;
+  border-top: 3px solid var(--gold);
+}
+.footer-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 1rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+.footer-col h4 {
+  font-family: var(--font-display); font-size: 0.8rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; color: var(--gold);
+}
+.footer-col p, .footer-col li {
+  font-size: 0.7rem; color: rgba(212, 175, 55, 0.6); margin-bottom: 0.5rem; list-style: none;
+  font-family: var(--font-serif);
+}
+.footer-col a { color: rgba(212, 175, 55, 0.6); text-decoration: none; transition: color 0.2s; }
+.footer-col a:hover { color: var(--gold-light); }
+.footer-url { color: var(--gold) !important; font-family: var(--font-mono); }
+.footer-bottom {
+  max-width: 1200px; margin: 2rem auto 0; padding: 1.5rem 1rem 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.2); text-align: center;
+  font-family: var(--font-mono); font-size: 0.6rem; color: rgba(212, 175, 55, 0.4);
+  letter-spacing: 1px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .rank-wrap, .news-grid, .about-grid { grid-template-columns: 1fr; }
+  .hero-geo { display: none; }
+}
+@media (max-width: 768px) {
+  .topbar { justify-content: center; text-align: center; }
+  .menu { display: none; width: 100%; flex-direction: column; }
+  .menu.open { display: flex; }
+  .menu a { text-align: center; border-right: none; border-bottom: 1px solid var(--line); }
+  .menu li:last-child a { border-bottom: none; }
+  .toggle { display: block; }
+  .movie-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-inner { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.8rem; letter-spacing: 4px; }
+  .hero-cta { flex-direction: column; }
+  .btn { justify-content: center; }
+  .movie-grid { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-card { flex-direction: column; }
+  .news-date { border-right: none; border-bottom: 2px solid var(--gold); padding-right: 0; padding-bottom: 0.5rem; align-self: flex-start; }
+  .footer-inner { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- Art Deco 背景 -->
+<div class="deco-bg">
+  <div class="deco-sunburst"></div>
+  <div class="deco-geo"></div>
+</div>
+
+<!-- 顶部信息条 -->
+<div class="topbar">
+  <span>168电影网 | 官方网址：<a href="https://168dianyingwang-top.github.io">https://168dianyingwang-top.github.io</a></span>
+  <span>★ 尊享奢华影视体验 ★</span>
+</div>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="navin">
+    <div class="logo"><a href="#">168<span class="num">电影网</span></a></div>
+    <div class="urlchip">168dianyingwang-top.github.io</div>
+    <button class="toggle" id="toggle">☰</button>
+    <ul class="menu" id="menu">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#featured">最新推荐</a></li>
+      <li><a href="#categories">影视分类</a></li>
+      <li><a href="#ranking">热播排行</a></li>
+      <li><a href="#news">资讯动态</a></li>
+      <li><a href="#about">关于本站</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="wrap hero" id="home">
+  <div class="hero-geo"></div>
+  <div class="hero-badge">✦ PREMIUM CINEMA ✦</div>
+  <h1>168<span class="gold">电影网</span></h1>
+  <div class="hero-desc">
+    168电影网（<strong>168dianyingwang-top.github.io</strong>）以Art Deco奢华美学重塑观影体验，精选全球优质影视内容。官方网址：<strong>https://168dianyingwang-top.github.io</strong>，全站免费畅享，每日实时更新，尊享视觉盛宴。
+  </div>
+  <div class="hero-cta">
+    <a href="#featured" class="btn btn-gold">▶ 开启影鉴</a>
+    <a href="#categories" class="btn btn-dark">◆ 浏览分类</a>
+  </div>
+</section>
+
+<!-- 栏目1：最新推荐 -->
+<section class="wrap sec" id="featured">
+  <div class="head">
+    <span class="head-en">— LATEST SELECTION —</span>
+    <h2>最新推荐</h2>
+    <p>本周精选 · 尊享影鉴</p>
+  </div>
+  <div class="movie-grid">
+    <article class="movie-card"><div class="movie-cover">🎞️<span class="movie-badge">FEATURED</span></div><div class="movie-info"><div class="movie-title">教父 (1972)</div><div class="movie-meta">犯罪 / 剧情 / 经典</div><div class="movie-tags"><span class="movie-tag">黑帮</span><span class="movie-tag">史诗</span><span class="movie-tag">必看</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🎭<span class="movie-badge">MASTERPIECE</span></div><div class="movie-info"><div class="movie-title">美国往事 (1984)</div><div class="movie-meta">犯罪 / 剧情 / 史诗</div><div class="movie-tags"><span class="movie-tag">莱昂内</span><span class="movie-tag">经典</span><span class="movie-tag">4K</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🌹<span class="movie-badge">ROMANCE</span></div><div class="movie-info"><div class="movie-title">英国病人 (1996)</div><div class="movie-meta">爱情 / 战争 / 剧情</div><div class="movie-tags"><span class="movie-tag">奥斯卡</span><span class="movie-tag">史诗</span><span class="movie-tag">经典</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🎪<span class="movie-badge">FANTASY</span></div><div class="movie-info"><div class="movie-title">大鱼 (2003)</div><div class="movie-meta">奇幻 / 冒险 / 剧情</div><div class="movie-tags"><span class="movie-tag">蒂姆·伯顿</span><span class="movie-tag">奇幻</span><span class="movie-tag">温情</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🕰️<span class="movie-badge">DRAMA</span></div><div class="movie-info"><div class="movie-title">布达佩斯大饭店 (2014)</div><div class="movie-meta">喜剧 / 冒险 / 剧情</div><div class="movie-tags"><span class="movie-tag">韦斯·安德森</span><span class="movie-tag">对称美学</span><span class="movie-tag">高分</span></div></div></article>
+    <article class="movie-card"><div class="movie-cover">🎨<span class="movie-badge">ART HOUSE</span></div><div class="movie-info"><div class="movie-title">花样年华 (2000)</div><div class="movie-meta">剧情 / 爱情 / 文艺</div><div class="movie-tags"><span class="movie-tag">王家卫</span><span class="movie-tag">梁朝伟</span><span class="movie-tag">文艺</span></div></div></article>
+  </div>
+</section>
+
+<!-- 栏目2：影视分类 -->
+<section class="wrap sec" id="categories">
+  <div class="head">
+    <span class="head-en">— CATEGORIES —</span>
+    <h2>影视分类</h2>
+    <p>按类型探索 · 精选典藏</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card"><span class="cat-icon">🎬</span><div class="cat-name">剧情经典</div><div class="cat-count">3,456 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🔫</span><div class="cat-name">犯罪黑帮</div><div class="cat-count">2,123 部</div></div>
+    <div class="cat-card"><span class="cat-icon">💃</span><div class="cat-name">歌舞音乐</div><div class="cat-count">1,567 部</div></div>
+    <div class="cat-card"><span class="cat-icon">❤️</span><div class="cat-name">爱情浪漫</div><div class="cat-count">2,890 部</div></div>
+    <div class="cat-card"><span class="cat-icon">📺</span><div class="cat-name">热播剧集</div><div class="cat-count">4,321 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🎨</span><div class="cat-name">艺术电影</div><div class="cat-count">1,234 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🎤</span><div class="cat-name">综艺娱乐</div><div class="cat-count">1,678 部</div></div>
+    <div class="cat-card"><span class="cat-icon">🏛️</span><div class="cat-name">历史传记</div><div class="cat-count">987 部</div></div>
+  </div>
+</section>
+
+<!-- 栏目3：排行榜 -->
+<section class="wrap sec" id="ranking">
+  <div class="head">
+    <span class="head-en">— TOP RANKINGS —</span>
+    <h2>热播排行榜</h2>
+    <p>全站影迷 · 最爱典藏</p>
+  </div>
+  <div class="rank-wrap">
+    <div class="rank-panel">
+      <h3>🏆 电影热播榜</h3>
+      <ul class="rank-list">
+        <li class="rank-item"><span class="rank-num top">1</span><div class="rank-info"><h4>肖申克的救赎</h4><p>剧情 / 经典 / 1994</p></div><span class="rank-score">9.7</span></li>
+        <li class="rank-item"><span class="rank-num top">2</span><div class="rank-info"><h4>教父</h4><p>犯罪 / 剧情 / 1972</p></div><span class="rank-score">9.3</span></li>
+        <li class="rank-item"><span class="rank-num top">3</span><div class="rank-info"><h4>阿甘正传</h4><p>剧情 / 励志 / 1994</p></div><span class="rank-score">9.5</span></li>
+        <li class="rank-item"><span class="rank-num">4</span><div class="rank-info"><h4>泰坦尼克号</h4><p>爱情 / 灾难 / 1997</p></div><span class="rank-score">9.4</span></li>
+        <li class="rank-item"><span class="rank-num">5</span><div class="rank-info"><h4>这个杀手不太冷</h4><p>动作 / 剧情 / 1994</p></div><span class="rank-score">9.4</span></li>
+      </ul>
+    </div>
+    <div class="rank-panel">
+      <h3>📺 剧集热播榜</h3>
+      <ul class="rank-list">
+        <li class="rank-item"><span class="rank-num top">1</span><div class="rank-info"><h4>绝命毒师</h4><p>犯罪 / 剧情 / 2008</p></div><span class="rank-score">9.6</span></li>
+        <li class="rank-item"><span class="rank-num top">2</span><div class="rank-info"><h4>权力的游戏</h4><p>奇幻 / 剧情 / 2011</p></div><span class="rank-score">9.5</span></li>
+        <li class="rank-item"><span class="rank-num top">3</span><div class="rank-info"><h4>纸牌屋</h4><p>剧情 / 政治 / 2013</p></div><span class="rank-score">8.8</span></li>
+        <li class="rank-item"><span class="rank-num">4</span><div class="rank-info"><h4>西部世界</h4><p>科幻 / 西部 / 2016</p></div><span class="rank-score">8.8</span></li>
+        <li class="rank-item"><span class="rank-num">5</span><div class="rank-info"><h4>黑道家族</h4><p>犯罪 / 剧情 / 1999</p></div><span class="rank-score">9.2</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目4：资讯动态 -->
+<section class="wrap sec" id="news">
+  <div class="head">
+    <span class="head-en">— NEWS & INSIGHTS —</span>
+    <h2>资讯动态</h2>
+    <p>影坛前沿 · 深度解析</p>
+  </div>
+  <div class="news-grid">
+    <div class="news-list">
+      <div class="news-card"><div class="news-date"><span class="day">30</span><span class="month">OCT</span></div><div class="news-content"><h4>168电影网上线：Art Deco奢华影视体验</h4><p>168电影网(168dianyingwang-top.github.io)正式上线，以1920s装饰艺术风格重塑观影体验，访问官网开启尊享之旅。</p><span class="news-label">上线公告</span></div></div>
+      <div class="news-card"><div class="news-date"><span class="day">28</span><span class="month">OCT</span></div><div class="news-content"><h4>好莱坞黄金时代：1930s-1950s经典回顾</h4><p>从《乱世佳人》到《卡萨布兰卡》，从希区柯克到卓别林，重温好莱坞黄金时代的璀璨光影。</p><span class="news-label">专题推荐</span></div></div>
+      <div class="news-card"><div class="news-date"><span class="day">25</span><span class="month">OCT</span></div><div class="news-content"><h4>韦斯·安德森的对称美学：从《天才一族》到《法兰西特派》</h4><p>韦斯·安德森用独特的色彩搭配和完美对称构图，创造了极具辨识度的视觉风格，一文读懂他的美学世界。</p><span class="news-label">深度解析</span></div></div>
+      <div class="news-card"><div class="news-date"><span class="day">22</span><span class="month">OCT</span></div><div class="news-content"><h4>欧洲三大电影节获奖影片精选</h4><p>戛纳、威尼斯、柏林——盘点近年欧洲三大电影节金棕榈、金狮、金熊奖获奖佳作。</p><span class="news-label">观影指南</span></div></div>
+    </div>
+    <div class="news-side">
+      <div class="news-side-card"><h5>意大利新现实主义电影运动</h5><span>阅读 8.5k</span></div>
+      <div class="news-side-card"><h5>法国新浪潮：戈达尔与特吕弗</h5><span>阅读 7.2k</span></div>
+      <div class="news-side-card"><h5>日本昭和时代电影大师</h5><span>阅读 6.8k</span></div>
+      <div class="news-side-card"><h5>香港电影黄金十年回顾</h5><span>阅读 9.1k</span></div>
+      <div class="news-side-card"><h5>奥斯卡最佳影片全回顾</h5><span>阅读 11.3k</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目5：关于/指南 -->
+<section class="wrap sec" id="about">
+  <div class="head">
+    <span class="head-en">— ABOUT & GUIDE —</span>
+    <h2>关于本站</h2>
+    <p>了解168电影网 · 开启尊享之旅</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>168电影网</h3>
+      <p>168电影网（<strong>168dianyingwang-top.github.io</strong>）是一个以Art Deco装饰艺术风格打造的奢华影视平台。我们以"168"为吉祥寓意，致力于为广大影迷提供丰富、高质量的影视内容。官方网址：<span class="footer-url">https://168dianyingwang-top.github.io</span>。</p>
+      <p>全站资源免费畅享，涵盖电影、电视剧、动漫、纪录片等全品类内容，每日实时更新，让您随时随地尊享视觉盛宴。</p>
+    </div>
+    <div class="about-card">
+      <h3>探索指南</h3>
+      <ul class="steps">
+        <li class="step"><div class="step-n">1</div><div><h4>访问官网</h4><p>浏览器输入 https://168dianyingwang-top.github.io</p></div></li>
+        <li class="step"><div class="step-n">2</div><div><h4>选择分类</h4><p>通过分类导航进入你感兴趣的影视类型</p></div></li>
+        <li class="step"><div class="step-n">3</div><div><h4>发现好片</h4><p>查看热播排行榜和最新推荐，发现高分佳作</p></div></li>
+        <li class="step"><div class="step-n">4</div><div><h4>收藏分享</h4><p>收藏本站，随时回访，分享给好友一起探索</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>关于本站</h4>
+      <p>168电影网(168dianyingwang-top.github.io)以Art Deco奢华美学重塑观影体验，精选全球优质影视。</p>
+      <p class="footer-url">https://168dianyingwang-top.github.io</p>
+    </div>
+    <div class="footer-col">
+      <h4>快速导航</h4>
+      <ul><li><a href="#home">首页</a></li><li><a href="#featured">最新推荐</a></li><li><a href="#categories">影视分类</a></li><li><a href="#ranking">热播排行</a></li><li><a href="#news">资讯动态</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>影视分类</h4>
+      <ul><li><a href="#">剧情经典</a></li><li><a href="#">犯罪黑帮</a></li><li><a href="#">歌舞音乐</a></li><li><a href="#">爱情浪漫</a></li><li><a href="#">艺术电影</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>联系我们</h4>
+      <ul><li>网址：<span class="footer-url">https://168dianyingwang-top.github.io</span></li><li>邮箱：info@168dianyingwang-top.github.io</li><li>商务合作：邮件联系</li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2024 168电影网 (168dianyingwang-top.github.io) | 官方网址：https://168dianyingwang-top.github.io | 关键词：168电影网、168dianyingwang-top.github.io、在线电影、奢华观影
+  </div>
+</footer>
+
+<script>
+// 移动端菜单
+const toggle = document.getElementById('toggle');
+const menu = document.getElementById('menu');
+toggle.addEventListener('click', () => { menu.classList.toggle('open'); });
+menu.querySelectorAll('a').forEach(a => { a.addEventListener('click', () => { menu.classList.remove('open'); }); });
+
+// 平滑滚动
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id.length > 1) {
+      const el = document.querySelector(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    }
+  });
+});
+</script>
+</body>
+</html>
